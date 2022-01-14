@@ -55,6 +55,64 @@ public class EjerciciosNivel01 {
             return false;
         }
     }
+    public boolean esIsograma(String palabra){
+        palabra = limpiaFrase(palabra);
+        for (int i=0; i< palabra.length(); i++){
+            for (int j=i+1; j< palabra.length(); j++){
+                if (palabra.charAt(i) == palabra.charAt(j)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    /**
+     * Convierte una frase en su acrónimo
+     * @param frase la frase a convertir en acrónimo
+     * @return el Acrónimo en mayúsculas
+     */
+    public String acronimo(String frase){
+        //suponemos que por lo menos hay una letra en la frase
+        frase = frase.toUpperCase();
+        String palabras[] = frase.split(" ");
+        String resultado = "";
+        for (int i=0; i< palabras.length; i++){
+            if (!(palabras[i].equals("Y")||
+                   palabras[i].equals("E")||
+                    palabras[i].equals("DE")||
+                    palabras[i].equals("LA")||
+                    palabras[i].equals("LAS"))){
+            resultado = resultado + palabras[i].charAt(0);
+            }
+        }
+        return resultado;
+    }
+    public boolean anagrama (String p1, String p2){
+        p1 = limpiaFrase(p1);
+        p2 = limpiaFrase(p2);
+        
+        if (p1.length() != p2.length()) {
+            return false;
+        }else{
+            for(int i = 0; i < p1.length(); i++) {
+                int j=0;
+                while(j<p2.length() && (p1.charAt(i) != p2.charAt(j))) {
+                    j++;
+                }
+                if (j==p2.length()){
+                    return false;
+                }else{
+                    p2 = p2.substring(0, j) + p2.substring(j+1);
+                }
+            }
+            if (p2.length() == 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    
     
     public static void main(String[] args) {
         int[] numeros = {99, 37, 7, 54, 13};
@@ -67,6 +125,17 @@ public class EjerciciosNivel01 {
         System.out.println(Arrays.toString(e.maximos(numero3)));
         
         System.out.println(e.esPalindromo("Acaso hubo buhos acá"));
+        
+        System.out.println("Isograma Pájaro:" + e.esIsograma("Pájaro"));
+        System.out.println("Isograma Tijeras:" + e.esIsograma("Tijeras"));
+        
+        System.out.println("acronimo de Alta Velocidad Española:" + e.acronimo("Alta Velocidad Española "));
+        System.out.println("acronimo de Objeto Volador No Identificado:" + e.acronimo("Objeto Volador No Identificado"));
+        System.out.println("acronimo de Tecnología de la Información y de las Comunicaciones:" + e.acronimo("Tecnología de la Información y de las Comunicaciones"));
+        
+        System.out.println("anagrama:roma, amor: " + e.anagrama("roma", "amor"));
+        System.out.println("anagrama:princesa, cinrespa: " + e.anagrama("princesa", "cinrespa"));
+        System.out.println("anagrama:clavo, persona: " + e.anagrama("clavo", "persona"));
     }
     
 }
