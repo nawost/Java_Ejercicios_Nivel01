@@ -112,7 +112,32 @@ public class EjerciciosNivel01 {
             }
         }
     }
-    
+    public void imprimeMes(int numX){
+        int contador = 0; //para saber que dia de la semana estoy
+        //primera fase: imprime las XX
+        for (int i=0; i<numX; i++){
+            System.out.print("XX ");
+            contador++;
+        }
+        //segunda fase: imprime los numeros desde el 1 hasta el 31
+        for (int i=0; i<=31; i++){
+            if (i<10){
+                System.out.print("0" + i + " ");
+            }else{
+                System.out.print(i + " ");
+
+            }
+            contador++;
+            if (contador %7 == 0){
+                System.out.println("");
+            }
+        }
+        //tercera fase: imprimo las XX del final
+        while (contador %7 != 0){
+            System.out.print("XX ");
+            contador++;
+        }
+    }
     
     public static void main(String[] args) {
         int[] numeros = {99, 37, 7, 54, 13};
@@ -136,6 +161,8 @@ public class EjerciciosNivel01 {
         System.out.println("anagrama:roma, amor: " + e.anagrama("roma", "amor"));
         System.out.println("anagrama:princesa, cinrespa: " + e.anagrama("princesa", "cinrespa"));
         System.out.println("anagrama:clavo, persona: " + e.anagrama("clavo", "persona"));
+        
+        e.imprimeMes(2);
     }
     
 }
